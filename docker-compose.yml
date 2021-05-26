@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  dockerapi:
+    image: dockerquuu/dockerapi
+    ports:
+      - 8080:80
+    build:
+      context: .
+      dockerfile: dockerApi/Dockerfile
+    depends_on:
+      - mssqldb
+   
+  mssqldb:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=P@ssw0rd.
+    ports:
+      - 1433:1433
+       
